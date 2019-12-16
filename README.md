@@ -64,14 +64,14 @@ Students will be put into 3 or 4 person groups to complete the project.\n
 ## Timeframe
 The following is an anticipated timeline of how these stories should be completed in order to be finished by 12/23/19
 
-Monday: Story 1 && Story 10 - Story 12
-Tuesday: Story 13 - Story 16
-Wednesday: Story 2 - Story 9
-Thursday: Story 17 - Story 22
-Friday: Story 23 - Story 26
-Saturday: Story 27 - Story 30
-Sunday: Story 31 - Story 33
-Monday: Story 34 - Story 37
+* Monday: Story 1 && Story 10 - Story 12
+* Tuesday: Story 13 - Story 16
+* Wednesday: Story 2 - Story 9
+* Thursday: Story 17 - Story 22
+* Friday: Story 23 - Story 26
+* Saturday: Story 27 - Story 30
+* Sunday: Story 31 - Story 33
+* Monday: Story 34 - Story 37
 
 
 ## Not Everything can be FULLY Deleted
