@@ -42,7 +42,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     arel (8.0.0)
     bindex (0.8.1)
-    builder (3.2.3)
+    builder (3.2.4)
     byebug (11.0.1)
     capybara (3.29.0)
       addressable
@@ -73,7 +73,7 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
-    json (2.2.0)
+    json (2.3.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     listen (3.1.5)
@@ -172,7 +172,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    thor (0.20.3)
+    thor (1.0.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
     tzinfo (1.2.5)
@@ -213,4 +213,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-1.17.3
+   2.0.2
