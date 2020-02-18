@@ -438,8 +438,8 @@ And I see a flash message telling me that email address is already in use
 ## Shopping Cart and Checkout
 This is what this app is all about: how a user can put things in a shopping cart and check out, creating an order in the process. We want to add functionality to the cart to increment and decrement the quantity within the cart.
 
-### Visitors and Regular Users only
-Merchants and Admin users cannot order items. This will cause a conflict in the project if an admin upgrades a user to a merchant and that user had previous orders of their own. We're not going to worry about this conflict.
+### Visitors, Regular Users, and Merchant Employees only
+Merchant Employees can order items in addition to regular users. Admin can not order items. This should already be taken care of through the navigation restrictions you set in User Stories 5 & 9. 
 
 ```
 [ ] done
@@ -513,6 +513,7 @@ The show page template for an order can be shared between users, merchants and a
 
 ### Admin Control
 - Admins can cancel an order on behalf of a user
+- Admins can ship orders
 - Admins can fulfill items on order on behalf of a merchant
 
 ```
@@ -569,7 +570,7 @@ User Story 30, User cancels an order
 
 As a registered user
 When I visit an order's show page
-I see a button or link to cancel the order only if the order is still pending
+I see a button or link to cancel the order 
 When I click the cancel button for an order, the following happens:
 - Each row in the "order items" table is given a status of "unfulfilled"
 - The order itself is given a status of "cancelled"
@@ -629,7 +630,7 @@ And the user can no longer "cancel" the order.
 This is the landing page when a merchant logs in. Here, they will see their contact information (but cannot change it), some statistics, and a list of pending orders that require the merchant's attention.
 
 ### Admins can act on behalf of merchants
-Admin users will see more information on the "/merchants" route that all users see. For example, on this page, an admin user can navigate to each merchant's dashboard under a route like "/admin/merchants/7". This will allow the admin to perform every action that the merchant themselves can perform. Admin users can also "downgrade" a merchant account to become a user account.
+Admin users will see more information on the "/admin/merchants" route that all users see. For example, on this page, an admin user can navigate to each merchant's dashboard under a route like "/admin/merchants/7". This will allow the admin to perform every action that the merchant themselves can perform. Fulfilling merchant items will be an extension in User Stories 61 & 62
 
 ```
 [ ] done
