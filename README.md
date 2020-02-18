@@ -1,5 +1,5 @@
 # Monster Shop
-BE Mod 2 Week 4/5 Group Project (Part 1)
+BE Mod 2 Week 4/5 Group Project
 
 ## Background and Description
 
@@ -49,10 +49,9 @@ Students will be put into 3 or 4 person groups to complete the project.\n
 ## User Roles
 
 1. Visitor - this type of user is anonymously browsing our site and is not logged in
-1. Regular User - this user is registered and logged in to the application while performing their work; can place items in a cart and create an order
-1. Merchant Employee - this user works for a merchant. They can fulfill orders on behalf of their merchant. They also have the same permissions as a regular user (adding items to a cart and checking out)
-3. Merchant Admin - this user works for a merchant, and has additional capabilities than regular employees, such as changing merchant info.
-3. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work
+2. Regular User - this user is registered and logged in to the application while performing their work; can place items in a cart and create an order
+3. Merchant Employee - this user works for a merchant. They can fulfill orders on behalf of their merchant. They also have the same permissions as a regular user (adding items to a cart and checking out)
+4. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work
 
 ## Order Status
 
@@ -62,16 +61,18 @@ Students will be put into 3 or 4 person groups to complete the project.\n
 4. 'cancelled' - only 'pending' and 'packaged' orders can be cancelled
 
 ## Timeframe
-The following is an anticipated timeline of how these stories should be completed in order to be finished by 12/23/19
+The following is an anticipated timeline of how these stories should be completed in order to be finished by 2/27/20 at 8pm.
 
-* Monday: Story 1 && Story 10 - Story 12
-* Tuesday: Story 13 - Story 16
-* Wednesday: Story 2 - Story 9
+* Tuesday: Story 1 && Story 10 - Story 12
+* Wednesday: Story 2 - Story 9, Story 13 - Story 16
 * Thursday: Story 17 - Story 22
 * Friday: Story 23 - Story 26
-* Saturday: Story 27 - Story 30
-* Sunday: Story 31 - Story 33
-* Monday: Story 34 - Story 37
+* Saturday: Story 27 - Story 31
+* Sunday: Story 32 - Story 37
+* Monday: Story 38 - Story 41
+* Tuesday: Story 42 - Story 48
+* Wednesday: Story 49 - Story 51
+* Thursday: Story 52 - 54
 
 
 ## Not Everything can be FULLY Deleted
@@ -135,7 +136,7 @@ Next to the shopping cart link I see a count of the items in my cart
 
 User Story 3, User Navigation
 
-As a registered regular user
+As a default user
 I see the same links as a visitor
 Plus the following links
 - a link to my profile page ("/profile")
@@ -152,7 +153,7 @@ I also see text that says "Logged in as Mike Dao" (or whatever my name is)
 
 User Story 4, Merchant Navigation
 
-As any type of merchant
+As a merchant employee
 I see the same links as a regular user
 Plus the following links:
 - a link to my merchant dashboard ("/merchant")
@@ -178,7 +179,7 @@ Minus the following links/info
 
 User Story 6, Visitor Navigation Restrictions
 
-As a Visitor
+As a visitor
 When I try to access any path that begins with the following, then I see a 404 error:
 - '/merchant'
 - '/admin'
@@ -190,7 +191,7 @@ When I try to access any path that begins with the following, then I see a 404 e
 
 User Story 7, User Navigation Restrictions
 
-As a User
+As a default user
 When I try to access any path that begins with the following, then I see a 404 error:
 - '/merchant'
 - '/admin'
@@ -201,7 +202,7 @@ When I try to access any path that begins with the following, then I see a 404 e
 
 User Story 8, Merchant Navigation Restrictions
 
-As any type of merchant
+As a merchant employee
 When I try to access any path that begins with the following, then I see a 404 error:
 - '/admin'
 ```
@@ -211,7 +212,7 @@ When I try to access any path that begins with the following, then I see a 404 e
 
 User Story 9, Admin Navigation Restrictions
 
-As an Admin
+As an admin
 When I try to access any path that begins with the following, then I see a 404 error:
 - '/merchant'
 - '/cart'
@@ -372,7 +373,7 @@ I see an area with statistics:
 When a user who is not a merchant nor an admin logs into the system, they are taken to a profile page under a route of "/profile".
 
 ### Admins can act on behalf of users
-Admin users can access a namespaced route of "/admin/users" to see an index page  of all non-merchant/non-admin users, and from there see each user. This will allow the admin to perform every action on a user's account that the user themselves can perform. Admin users can also "upgrade" a user account to become a merchant account.
+Admin users can access a namespaced route of "/admin/users" to see an index page  of all non-merchant/non-admin users, and from there see each user. This will allow the admin to perform every action on a user's account that the user themselves can perform. This functionality is taken care of in User Stories 53 & 54.
 
 ```
 [ ] done
@@ -488,7 +489,7 @@ As a registered user
 When I add items to my cart
 And I visit my cart
 I see a button or link indicating that I can check out
-And I click the button or link to check out
+And I click the button or link to check out and fill out order info and click create order
 An order is created in the system, which has a status of "pending"
 That order is associated with my user
 I am taken to my orders page ("/profile/orders")
@@ -615,7 +616,7 @@ Orders are sorted by "status" in this order:
 User Story 33, Admin can "ship" an order
 
 As an admin user
-When I log into my dashboard, "/admin/dashboard"
+When I log into my dashboard, "/admin"
 Then I see any "packaged" orders ready to ship.
 Next to each order I see a button to "ship" the order.
 When I click that button for an order, the status of that order changes to "shipped"
@@ -635,7 +636,7 @@ Admin users will see more information on the "/merchants" route that all users s
 
 User Story 34, Merchant Dashboard Show Page
 
-As a merchant employee or admin
+As a merchant employee
 When I visit my merchant dashboard ("/merchant")
 I see the name and full address of the merchant I work for
 ```
@@ -645,7 +646,7 @@ I see the name and full address of the merchant I work for
 
 User Story 35, Merchant Dashboard displays Orders
 
-As a merchant
+As a merchant employee
 When I visit my merchant dashboard ("/merchant")
 If any users have pending orders containing items I sell
 Then I see a list of these orders.
@@ -661,7 +662,7 @@ Each order listed includes the following information:
 
 User Story 36, Merchant's Items index page
 
-As a merchant
+As a merchant employee
 When I visit my merchant dashboard
 I see a link to view my own items
 When I click that link
@@ -679,6 +680,414 @@ And I click on a merchant's name,
 Then my URI route should be ("/admin/merchants/6")
 Then I see everything that merchant would see
 ```
+---
+
+## Merchant Index Page
+All users can see a merchant index page which will list some basic information about each merchant. When admins visit this page, however, more functionality is found, and it is found at the "/admin/merchants" route.
+
+```
+[ ] done
+
+User Story 38, Admin disables a merchant account
+
+As an admin
+When I visit the admin's merchant index page ('/admin/merchants')
+I see a "disable" button next to any merchants who are not yet disabled
+When I click on the "disable" button
+I am returned to the admin's merchant index page where I see that the merchant's account is now disabled
+And I see a flash message that the merchant's account is now disabled
+```
+
+```
+[ ] done
+
+User Story 39, Disabled Merchant Item's are inactive
+
+As an admin
+When I visit the merchant index page
+And I click on the "disable" button for an enabled merchant
+Then all of that merchant's items should be deactivated
+```
+
+```
+[ ] done
+
+User Story 40, Admin enables a merchant account
+
+As an admin
+When I visit the merchant index page
+I see an "enable" button next to any merchants whose accounts are disabled
+When I click on the "enable" button
+I am returned to the admin's merchant index page where I see that the merchant's account is now enabled
+And I see a flash message that the merchant's account is now enabled
+```
+
+```
+[ ] done
+
+User Story 41, Enabled Merchant Item's are active
+
+As an admin
+When I visit the merchant index page
+And I click on the "enable" button for a disabled merchant
+Then all of that merchant's items should be activated
+```
+
+---
+
+## Merchant Items
+Merchants need CRUD functionality for items in the database. These stories will work through the management of items. These routes should be namespaced like "/merchant/items" and "/merchant/items/6" and so on. Merchants can disable items so they are no longer for sale but stay in the database so orders are still handled properly. Merchants can fully delete items if nobody has ever ordered it.
+
+### Admin functionality
+Admin users share all management functionality, but the routes will be much longer, like "/admin/merchants/8/items" and "/admin/merchants/8/items/6" and so on.
+
+```
+[ ] done
+
+User Story 42, Merchant deactivates an item
+
+As a merchant employee
+When I visit my items page
+I see all of my items with the following info:
+ - name
+- description
+- price
+- image
+- active/inactive status
+- inventory
+I see a link or button to deactivate the item next to each item that is active
+And I click on the "deactivate" button or link for an item
+I am returned to my items page
+I see a flash message indicating this item is no longer for sale
+I see the item is now inactive
+```
+
+```
+[ ] done
+
+User Story 43, Merchant activates an item
+
+As a merchant employee
+When I visit my items page
+I see a link or button to activate the item next to each item that is inactive
+And I click on the "activate" button or link for an item
+I am returned to my items page
+I see a flash message indicating this item is now available for sale
+I see the item is now active
+```
+
+```
+[ ] done
+
+User Story 44, Merchant deletes an item
+
+As a merchant employee
+When I visit my items page
+I see a button or link to delete the item next to each item that has never been ordered
+When I click on the "delete" button or link for an item
+I am returned to my items page
+I see a flash message indicating this item is now deleted
+I no longer see this item on the page
+```
+
+```
+[ ] done
+
+User Story 45, Merchant adds an item
+
+As a merchant employee
+When I visit my items page
+I see a link to add a new item
+When I click on the link to add a new item
+I see a form where I can add new information about an item, including:
+- the name of the item, which cannot be blank
+- a description for the item, which cannot be blank
+- a thumbnail image URL string, which CAN be left blank
+- a price which must be greater than $0.00
+- my current inventory count of this item which is 0 or greater
+
+When I submit valid information and submit the form
+I am taken back to my items page
+I see a flash message indicating my new item is saved
+I see the new item on the page, and it is enabled and available for sale
+If I left the image field blank, I see a placeholder image for the thumbnail
+```
+
+```
+[ ] done
+
+User Story 46, Merchant cannot add an item if details are bad/missing
+
+As a merchant employee
+When I try to add a new item
+If any of my data is incorrect or missing (except image)
+Then I am returned to the form
+I see one or more flash messages indicating each error I caused
+All fields are re-populated with my previous data
+```
+
+```
+[ ] done
+
+User Story 47, Merchant edits an item
+
+As a merchant employee
+When I visit my items page
+And I click the edit button or link next to any item
+Then I am taken to a form similar to the 'new item' form
+The form is pre-populated with all of this item's information
+I can change any information, but all of the rules for adding a new item still apply:
+- name and description cannot be blank
+- price cannot be less than $0.00
+- inventory must be 0 or greater
+
+When I submit the form
+I am taken back to my items page
+I see a flash message indicating my item is updated
+I see the item's new information on the page, and it maintains its previous enabled/disabled state
+If I left the image field blank, I see a placeholder image for the thumbnail
+```
+
+```
+[ ] done
+
+User Story 48, Merchant cannot edit an item if details are bad/missing
+
+As a merchant employee
+When I try to edit an existing item
+If any of my data is incorrect or missing (except image)
+Then I am returned to the form
+I see one or more flash messages indicating each error I caused
+All fields are re-populated with my previous data
+```
+
+---
+
+## Merchant Order Fulfillment
+Merchants must "fulfill" each ordered item for users. They will visit an order show page which will allow them to mark each item as fulfilled. Once every merchant marks their items for an order as "fulfilled" then the whole order switches its status to "packaged" (User Story 31). Merchants cannot fulfill items in an order if they do not have enough inventory in stock. If a user cancels an order after a merchant has fulfilled an item, the quantity of that item is returned to the merchant.
+
+### Admin functionality
+Admin can ship orders (taken care of in user story 33). Admin can fulfill items in an order on behalf of a merchant (this is an extension).
+
+```
+[ ] done
+
+User Story 49, Merchant sees an order show page
+
+As a merchant employee
+When I visit an order show page from my dashboard
+I see the recipients name and address that was used to create this order
+I only see the items in the order that are being purchased from my merchant
+I do not see any items in the order being purchased from other merchants
+For each item, I see the following information:
+- the name of the item, which is a link to my item's show page
+- an image of the item
+- my price for the item
+- the quantity the user wants to purchase
+```
+
+```
+[ ] done
+
+User Story 50, Merchant fulfills part of an order
+
+As a merchant employee
+When I visit an order show page from my dashboard
+For each item of mine in the order
+If the user's desired quantity is equal to or less than my current inventory quantity for that item
+And I have not already "fulfilled" that item:
+- Then I see a button or link to "fulfill" that item
+- When I click on that link or button I am returned to the order show page
+- I see the item is now fulfilled
+- I also see a flash message indicating that I have fulfilled that item
+- the item's inventory quantity is permanently reduced by the user's desired quantity
+
+If I have already fulfilled this item, I see text indicating such.
+```
+
+```
+[ ] done
+
+User Story 51, Merchant cannot fulfill an order due to lack of inventory
+
+As a merchant employee
+When I visit an order show page from my dashboard
+For each item of mine in the order
+If the user's desired quantity is greater than my current inventory quantity for that item
+Then I do not see a "fulfill" button or link
+Instead I see a notice next to the item indicating I cannot fulfill this item
+```
+
+---
+
+## User Management by Admins
+Admins will need a way to view a list of all regular users and view their profile and order data.
+
+```
+[ ] done
+
+User Story 52, Admin Merchant Index Page
+
+As an admin user
+When I visit the merchant's index page at "/admin/merchants"
+I see all merchants in the system
+Next to each merchant's name I see their city and state
+The merchant's name is a link to their Merchant Dashboard at routes such as "/admin/merchants/5"
+I see a "disable" button next to any merchants who are not yet disabled
+I see an "enable" button next to any merchants whose accounts are disabled
+```
+
+```
+[ ] done
+
+User Story 53, Admin User Index Page
+
+As an admin user
+When I click the "Users" link in the nav (only visible to admins)
+Then my current URI route is "/admin/users"
+Only admin users can reach this path.
+I see all users in the system
+Each user's name is a link to a show page for that user ("/admin/users/5")
+Next to each user's name is the date they registered
+Next to each user's name I see what type of user they are
+```
+
+```
+[ ] done
+
+User Story 54, Admin User Profile Page
+
+As an admin user
+When I visit a user's profile page ("/admin/users/5")
+I see the same information the user would see themselves
+I do not see a link to edit their profile
+```
+
+---
+
+## Extensions
+If your team finished all other user stories, it is expected that you will begin work on the following additional stories.
+
+The index page indicated in these stories should be namespaced under a route "/admin". This route should only be accessible to admin users of your application. Any functionality mentioned in this epic should be performed by admin users only, and respective routes should all be namespaced under "/admin"
+
+```
+[ ] done
+
+User Story 55, EXTENSION: Admin links to User's Order Show from Admin Dashboard
+
+As an admin user
+When I visit my dashboard and see all order data
+The order ID is a link to an admin-only view of the order
+When I click on the link for an order ID,
+My URL route is "/admin/users/5/orders/15"
+```
+
+```
+[ ] done
+
+User Story 56, EXTENSION: Admin views a User's Order Show Page
+
+As an admin user
+When I visit a user's profile
+And I click on a link for order's show page
+My URL route is now something like "/admin/users/5/orders/15"
+I see all information about the order, including the following information:
+- the ID of the order
+- the date the order was made
+- the date the order was last updated
+- the current status of the order
+- each item the user ordered, including name, description, thumbnail, quantity, price and subtotal
+- the total quantity of items in the whole order
+- the grand total of all items for that order
+```
+
+```
+[ ] done
+
+User Story 57, EXTENSION: Admin cancels a user's order
+
+As an admin user
+When I visit a user's order show page
+If the order is still "pending", I see a button or link to cancel the order
+When I click the cancel button for an order
+The same behaviors happen as if the user canceled the order themselves
+```
+
+```
+[ ] done
+
+User Story 58, EXTENSION: Admin can edit a user's profile data
+
+As an admin user
+When I visit a user's profile page ("/admin/users/5")
+And I click the link to edit the user's profile data
+The same behaviors exist as if I were that user trying to change their own data
+Except I am returned to the show page path of
+"/admin/users/5" when I am finished
+```
+
+```
+[ ] done
+
+User Story 59, EXTENSION: Admin disables a user account
+
+As an admin user
+When I visit the user index page
+I see a "disable" button next to any users who are not yet disabled
+I see an "enable" button next to any users whose accounts are disabled.
+If I click on a "disable" button for an enabled user
+I am returned to the admin's user index page
+And I see a flash message that the user's account is now disabled
+And I see that the user's account is now disabled
+This user cannot log in
+This user's city/state and orders should not be part of any statistics.
+```
+
+```
+[ ] done
+
+User Story 60, EXTENSION: Admin enables a user account
+
+As an admin user
+When I visit the user index page
+And I click on a "enable" button for a disabled user
+I am returned to the admin's user index page
+And I see a flash message that the user's account is now enabled
+And I see that the user's account is now enabled
+This user can now log in
+This user's city/state and orders should be included in all statistics.
+```
+
+```
+[ ] done
+
+User Story 61, EXTENSION: Admin can manage items on behalf of a merchant
+
+As an admin user
+When I visit a merchant's profile page
+I can click on the merchant's items link
+And have access to all functionality the merchant does, including
+- adding new items
+- editing existing items
+- enabling/disabling/deleting items
+
+All content rules still apply (eg, item name cannot be blank, etc)
+```
+
+```
+[ ] done
+
+User Story 62, EXTENSION: Admin can fulfill order items on behalf of a merchant
+
+As an admin user
+When I visit a Merchant's order show page
+For each item in the order
+If the user's desired quantity is less than the merchant's current inventory
+I can fulfill that item
+If the user's desired quantity is greater than the merchant's current inventory quantity for that item
+Then I do not see a "fulfill" button or link
+Instead I see a big red notice next to the item indicating I cannot fulfill this item
+```
 
 
 
@@ -686,7 +1095,7 @@ Then I see everything that merchant would see
 
 | | **Feature Completeness** | **Rails** | **ActiveRecord** | **Testing and Debugging** |
 | --- | --- | --- | --- | --- |
-| **4: Exceptional**  | All User Stories 100% complete including all sad paths and edge cases, and some extension work completed | Students implement strategies not discussed in class to effectively organize code and adhere to MVC. | Highly effective and efficient use of ActiveRecord beyond what we've taught in class. Even `.each` calls will not cause additional database lookups. | Very clear Test Driven Development. Test files are extremely well organized and nested. Students utilize `before :each` blocks. 100% coverage for features and models | 
-| **3: Passing** | Students complete all User Stories. No more than 2 Stories fail to correctly implement sad path and edge case functionality. All 37 user stories from part 1 were completed on time. | Students use the principles of MVC to effectively organize code. Students can defend any of their design decisions. Students limit access to authorized users. | ActiveRecord is used in a clear and effective way to read/write data using no Ruby to process data. | 100% coverage for models. 98% coverage for features. Tests are well written and meaningful. | 
+| **4: Exceptional**  | All User Stories 100% complete including all sad paths and edge cases, and some extension work completed | Students implement strategies not discussed in class to effectively organize code and adhere to MVC. | Highly effective and efficient use of ActiveRecord beyond what we've taught in class. Even `.each` calls will not cause additional database lookups. | Very clear Test Driven Development. Test files are extremely well organized and nested. Students utilize `before :each` blocks. 100% coverage for features and models |
+| **3: Passing** | Students complete all User Stories. No more than 2 Stories fail to correctly implement sad path and edge case functionality.  | Students use the principles of MVC to effectively organize code. Students can defend any of their design decisions. Students limit access to authorized users. | ActiveRecord is used in a clear and effective way to read/write data using no Ruby to process data. | 100% coverage for models. 98% coverage for features. Tests are well written and meaningful. |
 | **2: Passing with Concerns** | Students complete all but 1 - 3 User Stories | Students utilize MVC to organize code, but cannot defend some of their design decisions. Or some functionality is not limited to the appropriately authorized users. | Ruby is used to process data that could use ActiveRecord instead. | Feature test coverage between 90% and 98%, or model test coverage below 100%, or tests are not meaningfully written or have an unclear objective. |
-| **1: Failing** | Students fail to complete 4 or more User Stories | Students do not effectively organize code using MVC. Or students do not authorize users. | Ruby is used to process data more often than ActiveRecord | Below 90% coverage for either features or models. | 
+| **1: Failing** | Students fail to complete 4 or more User Stories | Students do not effectively organize code using MVC. Or students do not authorize users. | Ruby is used to process data more often than ActiveRecord | Below 90% coverage for either features or models. |
