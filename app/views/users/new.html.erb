@@ -1,0 +1,20 @@
+<h2>New User Registration</h2>
+<%= form_tag "/users" do %>
+<%= label_tag :name %>
+<%= text_field_tag :name, (if @user != nil then @user.name else nil end) %>
+<%= label_tag :address %>
+<%= text_field_tag :address, (if @user != nil then @user.address else nil end)%>
+<%= label_tag :city %>
+<%= text_field_tag :city,(if @user != nil then @user.city else nil end)%>
+<%= label_tag :state %>
+<%= text_field_tag :state, (if @user != nil then @user.state else nil end) %>
+<%= label_tag :zip %>
+<%= text_field_tag :zip, (if @user != nil then @user.zip else nil end)%>
+<%= label_tag :email %>
+<%= text_field_tag :email %>
+<%= label_tag :password %>
+<%= text_field_tag :password %>
+<%= label_tag :password_confirmation %>
+<%= text_field_tag :password_confirmation %>
+<%= submit_tag "Create User" %>
+<% end %>
