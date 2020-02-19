@@ -31,7 +31,7 @@ RSpec.describe "create user page", type: :feature do
 
     it "will not register an email already registered within the database" do
 
-      user1 = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg")
+      user1 = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 0)
 
       fill_in :name, with: "Will"
       fill_in :address, with: "Back Alley"
@@ -79,11 +79,26 @@ RSpec.describe "create user page", type: :feature do
       expect(current_path).to eq("/profile")
     end
 
-    it "can be created as a default user" do
-      user1 = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg")
+    it "can login as default user" do
+      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 0)
 
-      expect(user1.role).to eq("default")
-      expect(user1.default?).to be_truthy
+      visit '/'
+
+      click_link 'Log In'
+
+      expect(current_path).to eq('/login')
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+
+      click_on 'Login'
+
+      expect(current_path).to eq('/')
+      expect(page).to have_content("Welcome, #{user.name}")
+      expect(page).to have_link('Log Out')
+      expect(page).to_not have_link('Register')
+      expect(page).to_not have_link('Log In')
     end
+
   end
 end
