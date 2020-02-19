@@ -98,6 +98,7 @@ RSpec.describe "create user page", type: :feature do
       expect(page).to have_link('Log Out')
       expect(page).to_not have_link('Register')
       expect(page).to_not have_link('Log In')
+
     end
 
     it 'can login as a merchant employee' do
@@ -139,5 +140,17 @@ RSpec.describe "create user page", type: :feature do
       expect(page).to have_link('See All Users')
       expect(page).to_not have_link("Cart: 0")
     end
+
+    it 'cannot visit admin or merchant page' do
+      visit '/merchant'
+      expect(page).to have_content("The page you were looking for doesn't exist")
+
+      visit '/admin'
+      expect(page).to have_content("The page you were looking for doesn't exist")
+
+      visit '/profile'
+      expect(page).to have_content("The page you were looking for doesn't exist")
+    end
+
   end
 end
