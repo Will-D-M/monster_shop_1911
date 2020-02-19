@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20200219194643) do
     t.string "zip"
     t.string "email"
     t.string "password_digest"
-    t.integer "role"
+    t.integer "role", default: 0
   end
 
   add_foreign_key "item_orders", "items"
