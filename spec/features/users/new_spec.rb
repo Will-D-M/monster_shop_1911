@@ -172,4 +172,21 @@ RSpec.describe "create user page", type: :feature do
       expect(page).to have_content("The page you were looking for doesn't exist")
     end
   end
+
+  describe 'as a merchant user' do
+    it 'cannot visit merchant or admin pages' do
+      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 1)
+
+      visit '/'
+
+      click_link 'Log In'
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+      click_on 'Login'
+
+      visit '/admin'
+      expect(page).to have_content("The page you were looking for doesn't exist")
+    end
+  end
 end
