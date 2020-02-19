@@ -78,5 +78,12 @@ RSpec.describe "create user page", type: :feature do
 
       expect(current_path).to eq("/profile")
     end
+
+    it "can be created as a default user" do
+      user1 = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg")
+
+      expect(user1.role).to eq("default")
+      expect(user1.default?).to be_truthy
+    end
   end
 end
