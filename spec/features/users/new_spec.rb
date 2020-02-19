@@ -44,7 +44,6 @@ RSpec.describe "create user page", type: :feature do
 
       click_on "Create User"
 
-      expect(current_path).to eq("/register")
       expect(page).to have_content("Email is already in use, please try another.")
     end
 
