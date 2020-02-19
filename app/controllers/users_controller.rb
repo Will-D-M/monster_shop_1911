@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       flash[:notice] = "You are registered and now logged in."
     elsif @user.duplicate_email?(@user.email)
       flash[:notice] = "Email is already in use, please try another."
-      redirect_to "/register"
+      render :new
     else
       flash[:notice] = "Please fill out all required fields."
       render :new
