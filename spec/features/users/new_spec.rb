@@ -100,5 +100,25 @@ RSpec.describe "create user page", type: :feature do
       expect(page).to_not have_link('Log In')
     end
 
+    it 'can login as a merchant employee' do
+      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 1)
+
+      visit '/'
+
+      click_link 'Log In'
+
+      expect(current_path).to eq('/login')
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+
+      click_on 'Login'
+
+      expect(current_path).to eq('/')
+      expect(page).to have_content("Welcome, #{user.name}")
+      expect(page).to have_link('Merchant Dashboard')
+    end
+
+
   end
 end
