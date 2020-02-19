@@ -11,12 +11,20 @@
   <body>
     <nav class = "topnav">
 
-      <% if current_user != nil %>
+      <% if current_default? %>
         <%= link_to "Welcome", "/" %>
         <%= link_to "All Merchants", "/merchants"%>
         <%= link_to "All Items", "/items"%>
         <%= link_to "Cart: #{cart.total_items}", "/cart" %>
         <%= link_to "Profile", "/profile"%>
+        <%= link_to "Log Out", "/logout" %>
+      <% elsif current_merchant_employee? %>
+        <%= link_to "Welcome", "/" %>
+        <%= link_to "All Merchants", "/merchants"%>
+        <%= link_to "All Items", "/items"%>
+        <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+        <%= link_to "Profile", "/profile"%>
+        <%= link_to "Merchant Dashboard", "/merchant"%>
         <%= link_to "Log Out", "/logout" %>
       <% else %>
         <%= link_to "Welcome", "/" %>
