@@ -156,3 +156,17 @@ td, th {
 tr:nth-child(even) {
   background-color: #F0F8FF;
 }
+
+.welcome {
+  margin: 0;
+  font-size: 25px;
+  text-align: center;
+  white-space: nowrap;
+  animation: type 1.2s steps(60, end);
+  overflow: hidden;
+}
+
+@keyframes type {
+  from { width: 0%; }
+  to {width: 100%}
+}
