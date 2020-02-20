@@ -12,7 +12,7 @@ RSpec.describe "Items Index Page" do
       @dog_bone = @brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
     end
 
-    it "all items or merchant names are links" do
+    it "all items or merchant names or pictures are links" do
       visit '/items'
 
       expect(page).to have_link(@tire.name)
@@ -20,6 +20,8 @@ RSpec.describe "Items Index Page" do
       expect(page).to have_link(@pull_toy.name)
       expect(page).to have_link(@pull_toy.merchant.name)
       expect(page).to_not have_link(@dog_bone.name)
+
+      expect(page).to have_css("img[src*='#{@tire.image}']")
     end
 
     it "I can see a list of all of the items "do
@@ -45,6 +47,10 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_link(@brian.name)
         expect(page).to have_css("img[src*='#{@pull_toy.image}']")
       end
+    end
+
+    it "can display top 5 most popular and bottom 5 least popular items and quantity bought" do
+      expect(page)
     end
   end
 end
