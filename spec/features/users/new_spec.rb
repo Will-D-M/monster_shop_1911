@@ -81,19 +81,9 @@ RSpec.describe "create user page", type: :feature do
 
     it "can login as default user" do
       user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 0)
-
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       visit '/'
 
-      click_link 'Log In'
-
-      expect(current_path).to eq('/login')
-
-      fill_in :email, with: user.email
-      fill_in :password, with: user.password
-
-      click_on 'Login'
-
-      expect(current_path).to eq('/')
       expect(page).to have_content("Welcome, #{user.name}")
       expect(page).to have_link('Log Out')
       expect(page).to_not have_link('Register')
@@ -103,19 +93,9 @@ RSpec.describe "create user page", type: :feature do
 
     it 'can login as a merchant employee' do
       user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 1)
-
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       visit '/'
 
-      click_link 'Log In'
-
-      expect(current_path).to eq('/login')
-
-      fill_in :email, with: user.email
-      fill_in :password, with: user.password
-
-      click_on 'Login'
-
-      expect(current_path).to eq('/')
       expect(page).to have_content("Welcome, #{user.name}")
       expect(page).to have_link('Merchant Dashboard')
     end
@@ -123,18 +103,9 @@ RSpec.describe "create user page", type: :feature do
     it 'can login as an admin' do
       user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 2)
 
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       visit '/'
 
-      click_link 'Log In'
-
-      expect(current_path).to eq('/login')
-
-      fill_in :email, with: user.email
-      fill_in :password, with: user.password
-
-      click_on 'Login'
-
-      expect(current_path).to eq('/')
       expect(page).to have_content("Welcome, #{user.name}")
       expect(page).to have_link('Admin Dashboard')
       expect(page).to have_link('See All Users')
@@ -193,14 +164,8 @@ RSpec.describe "create user page", type: :feature do
   describe 'as a merchant user' do
     it 'cannot visit merchant or admin pages' do
       user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 2)
-
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       visit '/'
-
-      click_link 'Log In'
-
-      fill_in :email, with: user.email
-      fill_in :password, with: user.password
-      click_on 'Login'
 
       visit '/merchant'
       expect(page).to have_content("The page you were looking for doesn't exist")
