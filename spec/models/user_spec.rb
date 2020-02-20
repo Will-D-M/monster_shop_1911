@@ -22,4 +22,32 @@ RSpec.describe User, type: :model do
       expect(user1.duplicate_email?(email2)).to eq(false)
     end
   end
+
+  describe "roles" do
+    it "can be created as an admin" do
+      user1 = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 2)
+
+
+      expect(user1.role).to eq("admin")
+      expect(user1.admin?).to be_truthy
+    end
+
+    it "can be created as a default user" do
+      user1 = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role:1)
+
+
+      expect(user1.role).to eq("merchant")
+      expect(user1.merchant?).to be_truthy
+    end
+
+    it "can be created as a default user" do
+      user1 = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 0)
+
+
+      expect(user1.role).to eq("default")
+      expect(user1.default?).to be_truthy
+    end
+  end
+
+
 end

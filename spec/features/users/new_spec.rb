@@ -31,7 +31,7 @@ RSpec.describe "create user page", type: :feature do
 
     it "will not register an email already registered within the database" do
 
-      user1 = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg")
+      user1 = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 0)
 
       fill_in :name, with: "Will"
       fill_in :address, with: "Back Alley"
@@ -77,6 +77,136 @@ RSpec.describe "create user page", type: :feature do
       click_on "Create User"
 
       expect(current_path).to eq("/profile")
+    end
+
+    it "can login as default user" do
+      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 0)
+
+      visit '/'
+
+      click_link 'Log In'
+
+      expect(current_path).to eq('/login')
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+
+      click_on 'Login'
+
+      expect(current_path).to eq('/')
+      expect(page).to have_content("Welcome, #{user.name}")
+      expect(page).to have_link('Log Out')
+      expect(page).to_not have_link('Register')
+      expect(page).to_not have_link('Log In')
+
+    end
+
+    it 'can login as a merchant employee' do
+      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 1)
+
+      visit '/'
+
+      click_link 'Log In'
+
+      expect(current_path).to eq('/login')
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+
+      click_on 'Login'
+
+      expect(current_path).to eq('/')
+      expect(page).to have_content("Welcome, #{user.name}")
+      expect(page).to have_link('Merchant Dashboard')
+    end
+
+    it 'can login as an admin' do
+      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 2)
+
+      visit '/'
+
+      click_link 'Log In'
+
+      expect(current_path).to eq('/login')
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+
+      click_on 'Login'
+
+      expect(current_path).to eq('/')
+      expect(page).to have_content("Welcome, #{user.name}")
+      expect(page).to have_link('Admin Dashboard')
+      expect(page).to have_link('See All Users')
+      expect(page).to_not have_link("Cart: 0")
+    end
+
+    it 'cannot visit admin or merchant page' do
+      visit '/merchant'
+      expect(page).to have_content("The page you were looking for doesn't exist")
+
+      visit '/admin'
+      expect(page).to have_content("The page you were looking for doesn't exist")
+
+      visit '/profile'
+      expect(page).to have_content("The page you were looking for doesn't exist")
+    end
+  end
+
+  describe 'as a default user' do
+    it 'cannot visit merchant or admin pages' do
+      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 0)
+
+      visit '/'
+
+      click_link 'Log In'
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+      click_on 'Login'
+
+      visit '/merchant'
+      expect(page).to have_content("The page you were looking for doesn't exist")
+
+      visit '/admin'
+      expect(page).to have_content("The page you were looking for doesn't exist")
+    end
+  end
+
+  describe 'as a merchant user' do
+    it 'cannot visit merchant or admin pages' do
+      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 1)
+
+      visit '/'
+
+      click_link 'Log In'
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+      click_on 'Login'
+
+      visit '/admin'
+      expect(page).to have_content("The page you were looking for doesn't exist")
+    end
+  end
+
+  describe 'as a merchant user' do
+    it 'cannot visit merchant or admin pages' do
+      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 2)
+
+      visit '/'
+
+      click_link 'Log In'
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+      click_on 'Login'
+
+      visit '/merchant'
+      expect(page).to have_content("The page you were looking for doesn't exist")
+
+      visit '/cart'
+      expect(page).to have_content("The page you were looking for doesn't exist")
     end
   end
 end

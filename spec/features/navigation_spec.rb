@@ -31,6 +31,11 @@ RSpec.describe 'Site Navigation' do
       within 'nav' do
         expect(page).to have_content("Cart: 0")
       end
+    end
+
+    it "can see login and profile links for default user" do
+      user1 = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 0)
+      
 
     end
   end
