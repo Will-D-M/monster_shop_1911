@@ -17,7 +17,24 @@
       <p>Price: <%=number_to_currency(item.price) %> </p>
       <p>Inventory: <%= item.inventory %> </p>
 
-      <% end %>
-    </section>
     <% end %>
+    </section>
+  <% end %>
+
+  <section id = "most_popular">
+  <h2> Most popular items: </h2>
+  <% @items.most_ordered_items.each do |item| %>
+    <p>Name: <%= item.name %></p>
+    <p>Quantity sold: <%= item.sum %></p>
+  <% end %>
+  </section>
+
+  <section id = "least_popular">
+  <h2> Least popular items: </h2>
+  <% @items.least_ordered_items.each do |item| %>
+    <p>Name: <%= item.name %></p>
+    <p>Quantity sold: <%= item.sum %></p>
+  <% end %>
+  </section>
+
 </section>
