@@ -1,5 +1,5 @@
 
-<%= form_tag "/login" do %>
+<%= form_tag "/login", method: :post do %>
 
   <%= label_tag :email %>
   <%= text_field_tag :email %>
