@@ -12,7 +12,10 @@ class User < ApplicationRecord
   has_secure_password
   enum role: %w(default merchant admin)
 
+  enum role: %w(default merchant_employee admin)
+
   def duplicate_email?(email)
     User.pluck(:email).include?(email)
   end
+
 end
