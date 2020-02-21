@@ -32,8 +32,12 @@
           <p><%=number_to_currency(item.price)%></p>
         </td>
         <td>
-          <center>
+          <div class="cart-quantity" id="cart-quantity-<%=item.id%>">
+            <%= link_to image_tag("https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-minus-512.png"), "/cart/#{item.id}/decrement", id: "decrement", method: :patch %>
             <p><%=quantity%></p>
+            <%= link_to image_tag("https://cdn4.iconfinder.com/data/icons/ios7-essence/22/add_plus-512.png"), "/cart/#{item.id}/increment", id: "increment", method: :patch %>
+          </div>
+          <center>
             <p><%= link_to "Remove", "/cart/#{item.id}",method: :delete %></p>
           </center>
           </td>
