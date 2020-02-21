@@ -32,4 +32,20 @@ class Cart
     end
   end
 
+  def add_quantity id
+    @contents[id] += 1
+  end
+
+  def subtract_quantity id
+    @contents[id] -= 1
+  end
+
+  def limit_reached? id
+    # binding.pry
+    @contents[id] == Item.find(id.to_s).inventory
+  end
+
+  def quantity_zero?(id)
+    @contents[id] == 0
+  end
 end
