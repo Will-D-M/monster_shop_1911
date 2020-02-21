@@ -48,7 +48,7 @@ class UsersController < ApplicationController
         flash[:notice] = 'Passwords do not match'
         redirect_to '/password'
       else
-        flash[:notice] = 'Please fill out all required fields'
+        flash[:notice] = flash.now[:error] = user.errors.full_messages.to_sentence
         redirect_to '/profile/edit'
       end
     end
