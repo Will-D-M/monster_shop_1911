@@ -35,7 +35,7 @@ describe "As a registered user on the profile page" do
     fill_in 'Address', with: ""
     click_on "Update Info"
 
-    expect(page).to have_content("Please fill out all required fields")
+    expect(page).to have_content("Address can't be blank")
 
     fill_in 'Address', with: "420 High St"
     click_on "Update Info"
