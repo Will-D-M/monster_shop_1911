@@ -170,3 +170,13 @@ tr:nth-child(even) {
   from { width: 0%; }
   to {width: 100%}
 }
+
+.cart-quantity {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cart-quantity img {
+  width: 20px;
+}
