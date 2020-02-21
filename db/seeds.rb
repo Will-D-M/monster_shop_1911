@@ -8,6 +8,7 @@
 
 Merchant.destroy_all
 Item.destroy_all
+User.destroy_all
 
 #merchants
 bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
@@ -22,4 +23,8 @@ dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it
 
 user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 0)
 user = User.create!(name: "Billy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "xboy@hotmail.com", password: "sfgdfg", role: 1)
-  user = User.create!(name: "Mikey", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "yboy@hotmail.com", password: "sfgdfg", role: 2)
+user = User.create!(name: "Mikey", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "yboy@hotmail.com", password: "sfgdfg", role: 2)
+
+order_1 = Order.create(name: 'Will', address: "123 main", city: "Denver", state: "CO", zip: 99999)
+
+order_1.item_orders.create(item: pull_toy, price: pull_toy.price, quantity: 9)

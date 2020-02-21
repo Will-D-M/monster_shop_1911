@@ -25,4 +25,12 @@ class Item <ApplicationRecord
     item_orders.empty?
   end
 
+  def self.most_ordered_items
+    joins(:item_orders).select("items.*, sum(quantity)").where(active?: true).group(:id).order("sum DESC").limit(5)
+  end
+
+  def self.least_ordered_items
+    joins(:item_orders).select("items.*, sum(quantity)").where(active?: true).group(:id).order("sum").limit(5)
+  end
+
 end

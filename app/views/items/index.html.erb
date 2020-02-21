@@ -6,20 +6,35 @@
 <% end %>
 <section class="grid-container">
   <% @items.each do |item| %>
+    <% if item.active? %>
     <section class = "grid-item" id= 'item-<%=item.id%>'>
+      <p>Active</p>
+
       <h2> <%=link_to item.name, "/items/#{item.id}" %> </h2>
       <p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
-      <img src= <%= item.image %>>
+      <p> <%=link_to image_tag(item.image), "/items/#{item.id}" %> </p>
       <p> <%= item.description unless @merchant%> </p>
       <p>Price: <%=number_to_currency(item.price) %> </p>
       <p>Inventory: <%= item.inventory %> </p>
-      <% if !@merchant %>
-      <% end %>
-      <% if item.active? %>
-        <p>Active</p>
-      <% else %>
-        <p>Inactive</p>
-      <% end %>
-    </section>
+
     <% end %>
+    </section>
+  <% end %>
+
+  <section id = "most_popular">
+  <h2> Most popular items: </h2>
+  <% @items.most_ordered_items.each do |item| %>
+    <p>Name: <%= item.name %></p>
+    <p>Quantity sold: <%= item.sum %></p>
+  <% end %>
+  </section>
+
+  <section id = "least_popular">
+  <h2> Least popular items: </h2>
+  <% @items.least_ordered_items.each do |item| %>
+    <p>Name: <%= item.name %></p>
+    <p>Quantity sold: <%= item.sum %></p>
+  <% end %>
+  </section>
+
 </section>
