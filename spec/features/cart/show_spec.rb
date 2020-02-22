@@ -55,6 +55,12 @@ RSpec.describe 'Cart show' do
 
         expect(page).to have_content("Total: $124")
       end
+
+      it 'I cannot checkout if I am not logged in' do
+        visit '/cart'
+        expect(page).to have_content("You must register or log in to checkout.")
+        expect(page).to_not have_link("Checkout")
+      end
     end
   end
   describe "When I haven't added anything to my cart" do
