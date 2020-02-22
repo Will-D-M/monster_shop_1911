@@ -7,3 +7,6 @@
 <p>Email: <%= @user.email %> </p>
 <p> <%= link_to "Edit Info", "/profile/edit" %> </p>
 <p> <%= link_to "Change Password", "/password" %> </p>
+<% if !@user.orders.empty? %>
+  <p><%= link_to "My Orders", "/profile/orders" %></p>
+<% end %>
