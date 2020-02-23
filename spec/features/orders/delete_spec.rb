@@ -9,7 +9,7 @@ describe "Cancel an existing order" do
     fill_in "Email", with: "zboy@hotmail.com"
     fill_in "Password", with: "sfgdfg"
     click_on "Login"
-    
+
     @mike = Merchant.create(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)
     @pencil = @mike.items.create(name: "Yellow Pencil", description: "You can write on paper with it!", price: 2, image: "https://images-na.ssl-images-amazon.com/images/I/31BlVr01izL._SX425_.jpg", inventory: 100)
     @order_1 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user_id: @user.id)
@@ -20,7 +20,7 @@ describe "Cancel an existing order" do
     visit "/profile/orders/#{@order_1.id}"
     click_button("Cancel Order")
     expect(current_path).to eq("/profile")
-    expect(page).to have_content("#{@order_1.id} is now cancelled.")
+    expect(page).to have_content("Order #{@order_1.id} is now cancelled.")
     visit "/profile/orders/"
     expect(page).to_not have_content("Order ID: #{@order_id}")
   end
