@@ -1,7 +1,10 @@
 class OrdersController <ApplicationController
 
-  def new
+  def index
+  end
 
+  def new
+    @user = current_user
   end
 
   def show
@@ -9,17 +12,18 @@ class OrdersController <ApplicationController
   end
 
   def create
-    order = Order.create(order_params)
-    if order.save
+    @order = current_user.orders.create(order_params)
+    if @order.save
       cart.items.each do |item,quantity|
-        order.item_orders.create({
+        @order.item_orders.create({
           item: item,
           quantity: quantity,
           price: item.price
           })
       end
       session.delete(:cart)
-      redirect_to "/orders/#{order.id}"
+      flash[:success] = "Order has been created."
+      redirect_to "/profile/orders"
     else
       flash[:notice] = "Please complete address form to create an order."
       render :new

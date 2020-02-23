@@ -7,7 +7,12 @@ class CartController < ApplicationController
   end
 
   def show
-    @items = cart.items
+    if current_user
+      @items = cart.items
+    else
+      @items = cart.items
+      flash.now[:error] = "You must #{view_context.link_to 'register', '/register'} or #{view_context.link_to 'log in', '/login'} to checkout.".html_safe
+    end
   end
 
   def empty

@@ -1,0 +1,9 @@
+<h2>List of Orders</h2>
+
+<% current_user.orders.each do |order| %>
+  <p> Order ID: <%= link_to order.id, "/profile/orders/#{order.id}" %>  </p>
+  <p> Order date: <%= order.created_at %></p>
+  <p> Last update: <%= order.updated_at %></p>
+  <p> Current status: <%= order.status %></p>
+  <p> Total items: <%= order.total_items %></p>
+<% end %>
