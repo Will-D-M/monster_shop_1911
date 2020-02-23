@@ -14,11 +14,10 @@ describe "As a visitor on the order show page" do
     @pencil = @mike.items.create(name: "Yellow Pencil", description: "You can write on paper with it!", price: 2, image: "https://images-na.ssl-images-amazon.com/images/I/31BlVr01izL._SX425_.jpg", inventory: 100)
     @order_1 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user_id: @user.id)
     @item_order_1 = @order_1.item_orders.create!(item: @pencil, price: @pencil.price, quantity: 2)
+    visit "/profile/orders/#{@order_1.id}"
   end
 
   it "I can see order details" do
-    visit "/profile/orders/#{@order_1.id}"
-
     expect(page).to have_content("Order ID: #{@order_1.id}")
     expect(page).to have_content("Order date: #{@order_1.created_at}")
     expect(page).to have_content("Last update: #{@order_1.updated_at}")
@@ -31,5 +30,9 @@ describe "As a visitor on the order show page" do
     expect(page).to have_content(@pencil.price)
     expect(page).to have_content(@item_order_1.subtotal)
     expect(page).to have_content("Total price: $#{@order_1.grandtotal}")
+  end
+
+  it 'has button to delete' do
+    expect(page).to have_button("Cancel Order")
   end
 end
