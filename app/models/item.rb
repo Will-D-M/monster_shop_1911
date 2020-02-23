@@ -33,4 +33,11 @@ class Item <ApplicationRecord
     joins(:item_orders).select("items.*, sum(quantity)").where(active?: true).group(:id).order("sum").limit(5)
   end
 
+  def decrease_inventory(quantity)
+    self.update(inventory: inventory - quantity)
+  end
+
+  def increase_inventory(quantity)
+    self.update(inventory: inventory + quantity)
+  end
 end
