@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   validates_uniqueness_of :email
   has_many :orders
+  belongs_to :merchant, optional: true
 
   validates_presence_of :name,
                         :address,
