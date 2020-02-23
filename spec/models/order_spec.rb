@@ -34,9 +34,10 @@ describe Order, type: :model do
 
       @order_1 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user_id: @user.id)
 
-      @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
-      @order_1.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 3)
+      @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2, status: 'fulfilled' )
+      @order_1.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 3, status: 'fulfilled')
     end
+
     it 'grandtotal' do
       expect(@order_1.grandtotal).to eq(230)
     end
@@ -44,5 +45,15 @@ describe Order, type: :model do
     it "total_items" do
       expect(@order_1.total_items).to eq(5)
     end
+
+    it "fulfilled?" do
+      expect(@order_1.fulfilled?).to eq(true)
+    end
+
+    it "packaged" do
+      @order_1.packaged
+      expect(@order_1.status).to eq("packaged")
+    end
+
   end
 end
