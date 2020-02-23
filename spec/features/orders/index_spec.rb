@@ -25,8 +25,15 @@ RSpec.describe "As a user on the order index page" do
     expect(page).to have_content("Last update: #{@order_1.updated_at}")
     expect(page).to have_content("Current status: #{@order_1.status}")
     expect(page).to have_content("Total items: #{@order_1.total_items}")
+    expect(page).to have_link(@order_1.id)
 
     expect(page).to have_content("Cart: 0")
+  end
+
+  it 'id link takes you to order show page' do
+    visit("/profile/orders")
+    click_on(@order_1.id)
+    expect(current_path).to eq("/profile/orders/#{@order_1.id}")
   end
 
   it 'displays a message when an order is created' do
