@@ -40,4 +40,13 @@ class Item <ApplicationRecord
   def increase_inventory(quantity)
     self.update(inventory: inventory + quantity)
   end
+
+  def active_false
+    self.update(active?: false)
+  end
+
+  def active_true
+    self.update(active?: true)
+  end
+
 end
