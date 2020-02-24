@@ -26,5 +26,9 @@ user_2 = User.create!(name: "Billy", address: "123", city: "Bruh", state: "CO", 
 user_3 = User.create!(name: "Mikey", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "yboy@hotmail.com", password: "sfgdfg", role: 2)
 
 order_1 = Order.create(name: 'Will', address: "123 main", city: "Denver", state: "CO", zip: 99999, user_id: user.id, status: 0)
+order_2 = Order.create(name: 'Bob', address: "123 main", city: "Denver", state: "CO", zip: 99999, user_id: user.id, status: 1)
+order_3 = Order.create(name: 'Bo', address: "123 main", city: "Denver", state: "CO", zip: 99999, user_id: user.id, status: 2)
+order_4 = Order.create(name: 'Greg', address: "123 main", city: "Denver", state: "CO", zip: 99999, user_id: user.id, status: 3)
+
 
 order_1.item_orders.create(item: pull_toy, price: pull_toy.price, quantity: 9)
