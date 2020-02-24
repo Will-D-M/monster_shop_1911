@@ -53,5 +53,12 @@ describe Merchant, type: :model do
       expect(@meg.distinct_cities).to eq(["Denver","Hershey"])
     end
 
+    it 'change_status' do
+      @meg.change_status
+      expect(@meg.status).to eq("disabled")
+      @meg.change_status
+      expect(@meg.status).to eq("active")
+    end
+
   end
 end

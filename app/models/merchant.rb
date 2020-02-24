@@ -9,6 +9,7 @@ class Merchant <ApplicationRecord
                         :state,
                         :zip
 
+  enum status: %w(active disabled)
 
   def no_orders?
     item_orders.empty?
@@ -24,6 +25,14 @@ class Merchant <ApplicationRecord
 
   def distinct_cities
     item_orders.distinct.joins(:order).pluck(:city)
+  end
+
+  def change_status
+    if status == "active"
+      update(status: "disabled")
+    else
+      update(status: "active")
+    end
   end
 
 end
