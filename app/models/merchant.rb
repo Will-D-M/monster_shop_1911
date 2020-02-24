@@ -9,6 +9,7 @@ class Merchant <ApplicationRecord
                         :state,
                         :zip
 
+  enum status: %w(active disabled)
 
   def no_orders?
     item_orders.empty?
@@ -29,6 +30,14 @@ class Merchant <ApplicationRecord
   def pending_orders
     orders = item_orders.where('item_orders.status = 0', 'items.merchant_id = ?', self.id).pluck(:order_id)
     Order.find(orders)
+  end
+
+  def change_status
+    if status == "active"
+      update(status: "disabled")
+    else
+      update(status: "active")
+    end
   end
 
 end

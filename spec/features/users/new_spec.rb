@@ -146,8 +146,7 @@ RSpec.describe "create user page", type: :feature do
 
   describe 'as a merchant user' do
     it 'cannot visit merchant or admin pages' do
-      bike_shop = Merchant.create!(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
-      user = bike_shop.users.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 1)
+      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 1)
 
       visit '/'
 

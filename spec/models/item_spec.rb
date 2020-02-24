@@ -112,5 +112,12 @@ describe Item, type: :model do
       @chain.increase_inventory(@item_order_1.quantity)
       expect(@chain.inventory).to eq(7)
     end
+
+    it "change_status" do
+      @chain.active_false
+      expect(@chain.active?).to eq(false)
+      @chain.active_true
+      expect(@chain.active?).to eq(true)
+    end
   end
 end

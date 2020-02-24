@@ -66,8 +66,11 @@ Rails.application.routes.draw do
     get '/', to: 'dashboard#index'
     get "/profile/:user_id", to: 'users#show'
     patch "/profile/:order_id", to: 'orders#update'
+    
     get '/merchants/:id', to: "merchants#show"
     get '/merchant/:id/items', to: "items#index"
     get '/merchant/orders/:id', to: "orders#show"
+    get '/merchants', to: 'merchants#index'
+    patch '/merchants/:id', to: 'merchants#update'
   end
 end
