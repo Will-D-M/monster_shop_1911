@@ -60,4 +60,6 @@
   <p> <%= @order.created_at%></p>
 </section>
 
-<p> <%= button_to "Cancel Order", "/profile/orders/#{@order.id}", method: :delete if !@order.status == "shipped" %> </p>
+<% if @order.status == "pending" || @order.status == "packaged" %>
+  <p> <%= button_to "Cancel Order", "/profile/orders/#{@order.id}", method: :delete %> </p>
+<% end %>
