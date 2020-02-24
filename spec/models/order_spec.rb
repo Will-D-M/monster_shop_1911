@@ -55,41 +55,10 @@ describe Order, type: :model do
       expect(@order_1.status).to eq("packaged")
     end
 
-    it 'items_count' do
-      bike_shop = Merchant.create!(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
-      user2 = bike_shop.users.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy22@hotmail.com", password: "test", role: 1)
-      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy23@hotmail.com", password: "sfgdfg", role: 0)
-      tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
-      chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 40, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 22)
-      order_1 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user_id: user.id)
-      order_1.item_orders.create!(item: tire, price: tire.price, quantity: 2)
-      order_1.item_orders.create!(item: chain, price: chain.price, quantity: 3)
-
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user2)
-
-      expect(order_1.items_count(bike_shop.id)).to eq(3)
-    end
-
-    it 'items_value' do
-      bike_shop = Merchant.create!(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
-      user2 = bike_shop.users.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy22@hotmail.com", password: "test", role: 1)
-      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy23@hotmail.com", password: "sfgdfg", role: 0)
-      tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
-      chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 40, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 22)
-      order_1 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user_id: user.id)
-      order_1.item_orders.create!(item: tire, price: tire.price, quantity: 2)
-      order_1.item_orders.create!(item: chain, price: chain.price, quantity: 3)
-
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user2)
-
-      expect(order_1.items_value(bike_shop.id)).to eq(120)
-    end
-
     it "ship" do
       @order_1.status = "packaged"
       @order_1.ship
       expect(@order_1.status).to eq("shipped")
     end
-
   end
 end
