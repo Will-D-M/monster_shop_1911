@@ -27,4 +27,7 @@ class Order <ApplicationRecord
     end
   end
 
+  def ship
+    self.update(status: "shipped")
+  end
 end

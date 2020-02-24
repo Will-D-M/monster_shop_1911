@@ -6,6 +6,7 @@
     <p> Name: <%= link_to "#{order.name}", "/admin/profile/#{order.user_id}" %></p>
     <p> Date created: <%= order.created_at %></p>
     <p> Status: <%= order.status %></p>
+    <p> <%= button_to "Ship", "/admin/profile/#{order.id}", method: :patch %></p>
   <% end %>
 <% end %>
 
