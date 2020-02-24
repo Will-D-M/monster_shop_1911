@@ -180,3 +180,9 @@ tr:nth-child(even) {
 .cart-quantity img {
   width: 20px;
 }
+
+.merch-orders {
+  border: solid black;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
