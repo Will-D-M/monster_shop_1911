@@ -85,5 +85,11 @@ describe Order, type: :model do
       expect(order_1.items_value(bike_shop.id)).to eq(120)
     end
 
+    it "ship" do
+      @order_1.status = "packaged"
+      @order_1.ship
+      expect(@order_1.status).to eq("shipped")
+    end
+
   end
 end

@@ -21,9 +21,9 @@ tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never po
 pull_toy = dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
 dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
 
-user = User.create!(name: "Will", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 0)
-user_2 = User.create!(name: "Bob", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "xboy@hotmail.com", password: "sfgdfg", role: 1, merchant_id: bike_shop.id)
-user_3 = User.create!(name: "Mikey", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "yboy@hotmail.com", password: "sfgdfg", role: 2)
+user = User.create!(name: "default_user", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "default@hotmail.com", password: "sfgdfg", role: 0)
+user_2 = User.create!(name: "merchant_employee", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "merchant@hotmail.com", password: "sfgdfg", role: 1, merchant_id: bike_shop.id)
+user_3 = User.create!(name: "admin", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "admin@hotmail.com", password: "sfgdfg", role: 2)
 
 order_1 = Order.create(name: 'Will', address: "123 main", city: "Denver", state: "CO", zip: 99999, user_id: user.id, status: 0)
 order_2 = Order.create(name: 'Bob', address: "123 main", city: "Denver", state: "CO", zip: 99999, user_id: user_2.id, status: 1)

@@ -13,6 +13,12 @@ describe 'As an admin on the admin dashboard' do
 
     @order_1.item_orders.create(item: @tire, price: @tire.price, quantity: 2, status: 0 )
 
+    @order_2 = Order.create(name: 'Jordan', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user_id: @user.id, status: 2)
+    @order_3 = Order.create(name: 'Jordan', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user_id: @user.id, status: 3)
+
+    @order_2.item_orders.create(item: @tire, price: @tire.price, quantity: 2, status: 0 )
+    @order_3.item_orders.create(item: @tire, price: @tire.price, quantity: 2, status: 0 )
+
     visit '/'
     click_on 'Log In'
     fill_in :email, with: "boy@hotmail.com"
@@ -30,4 +36,27 @@ describe 'As an admin on the admin dashboard' do
     expect(current_path).to eq("/admin/profile/#{@order_1.user_id}")
   end
 
+  it "can click a button to change packaged orders to shipped" do
+    visit '/admin'
+    click_on "Ship"
+    @order_2.reload
+    expect(@order_2.status).to eq("shipped")
+    expect(page).to_not have_button("Ship")
+  end
+
+  it "after shipping the cancel button is taken away" do
+    click_on 'Log Out'
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+    visit "/profile/orders/#{@order_3.id}"
+    expect(page).to_not have_button("Cancel Order")
+  end
 end
+
+# User Story 33, Admin can "ship" an order
+
+# As an admin user
+# When I log into my dashboard, "/admin"
+# Then I see any "packaged" orders ready to ship.
+# Next to each order I see a button to "ship" the order.
+# When I click that button for an order, the status of that order changes to "shipped"
+# And the user can no longer "cancel" the order.
