@@ -1,0 +1,37 @@
+<h2>All Orders</h2>
+
+<% @orders.each do |order| %>
+  <% if order.status == "packaged" %>
+    <p> Order ID: <%= order.id %></p>
+    <p> Name: <%= link_to "#{order.name}", "/admin/profile/#{order.user_id}" %></p>
+    <p> Date created: <%= order.created_at %></p>
+    <p> Status: <%= order.status %></p>
+  <% end %>
+<% end %>
+
+<% @orders.each do |order| %>
+  <% if order.status == "pending" %>
+    <p> Order ID: <%= order.id %></p>
+    <p> Name: <%= link_to "#{order.name}", "/admin/profile/#{order.user_id}" %></p>
+    <p> Date created: <%= order.created_at %></p>
+    <p> Status: <%= order.status %></p>
+  <% end %>
+<% end %>
+
+<% @orders.each do |order| %>
+  <% if order.status == "shipped" %>
+    <p> Order ID: <%= order.id %></p>
+    <p> Name: <%= link_to "#{order.name}", "/admin/profile/#{order.user_id}" %></p>
+    <p> Date created: <%= order.created_at %></p>
+    <p> Status: <%= order.status %></p>
+  <% end %>
+<% end %>
+
+<% @orders.each do |order| %>
+  <% if order.status == "cancelled" %>
+    <p> Order ID: <%= order.id %></p>
+    <p> Name: <%= link_to "#{order.name}", "/admin/profile/#{order.user_id}" %></p>
+    <p> Date created: <%= order.created_at %></p>
+    <p> Status: <%= order.status %></p>
+  <% end %>
+<% end %>

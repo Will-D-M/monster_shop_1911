@@ -22,9 +22,13 @@ pull_toy = dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!
 dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
 
 user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 0)
-user_2 = User.create!(name: "Billy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "xboy@hotmail.com", password: "sfgdfg", role: 1)
+user_2 = User.create!(name: "Billy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "xboy@hotmail.com", password: "sfgdfg", role: 1, merchant_id: bike_shop.id)
 user_3 = User.create!(name: "Mikey", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "yboy@hotmail.com", password: "sfgdfg", role: 2)
 
 order_1 = Order.create(name: 'Will', address: "123 main", city: "Denver", state: "CO", zip: 99999, user_id: user.id, status: 0)
+order_2 = Order.create(name: 'Bob', address: "123 main", city: "Denver", state: "CO", zip: 99999, user_id: user.id, status: 1)
+order_3 = Order.create(name: 'Bo', address: "123 main", city: "Denver", state: "CO", zip: 99999, user_id: user.id, status: 2)
+order_4 = Order.create(name: 'Greg', address: "123 main", city: "Denver", state: "CO", zip: 99999, user_id: user.id, status: 3)
+
 
 order_1.item_orders.create(item: pull_toy, price: pull_toy.price, quantity: 9)
