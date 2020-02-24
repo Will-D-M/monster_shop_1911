@@ -27,4 +27,17 @@ class Order <ApplicationRecord
     end
   end
 
+  def items_count merchant_id
+    Order.joins(:items)
+      .where('item_orders.order_id = ?', self.id)
+      .where('items.merchant_id = ?', merchant_id)
+      .sum('item_orders.quantity')
+  end
+  def items_value merchant_id
+    Order.joins(:items)
+      .where('item_orders.order_id = ?', self.id)
+      .where('items.merchant_id = ?', merchant_id)
+      .sum('item_orders.price * item_orders.quantity')
+  end
+
 end
