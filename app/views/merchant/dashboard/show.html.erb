@@ -1,8 +1,11 @@
 <h2><%= @merchant.name %></h2>
 
+
 <h3>Address</h3>
 <p><%= @merchant.address %></p>
 <p><%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %></p>
+
+<h3><%= link_to "View All Items", '/merchant/items' %></h3>
 
 <h3>Orders</h3>
 
