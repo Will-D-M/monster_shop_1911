@@ -21,7 +21,5 @@ describe "Cancel an existing order" do
     click_button("Cancel Order")
     expect(current_path).to eq("/profile")
     expect(page).to have_content("Order #{@order_1.id} is now cancelled.")
-    visit "/profile/orders/"
-    expect(page).to_not have_content("Order ID: #{@order_id}")
   end
 end
