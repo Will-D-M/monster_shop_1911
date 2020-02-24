@@ -1,0 +1,16 @@
+<h2><%= @merchant.name %></h2>
+
+<h3>Address</h3>
+<p><%= @merchant.address %></p>
+<p><%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %></p>
+
+<h3>Orders</h3>
+
+<% @merchant.pending_orders.each do |order| %>
+  <article id="orders-<%= order.id %>" class="merch-orders"
+    <p>Order ID: <%= link_to order.id, "/merchant/orders/:id" %></p>
+    <p>Date Ordered: <%= order.created_at %></p>
+    <p>Number of Items: <%= order.items_count(@merchant.id) %></p>
+    <p>Total Value of Items: <%= order.items_value(@merchant.id) %></p>
+  </article>
+<% end %>
