@@ -38,7 +38,7 @@ RSpec.describe 'merchant index page', type: :feature do
       fill_in "Password", with: "sfgdfg"
       click_on "Login"
     end
-    it "can disable a merchant account" do
+    it "can disable/enable a merchant account" do
       visit '/admin/merchants'
       within "#merchant-#{@bike_shop.id}" do
         click_on "Disable"
@@ -48,6 +48,13 @@ RSpec.describe 'merchant index page', type: :feature do
       within "#merchant-#{@bike_shop.id}" do
         expect(page).to have_content("Disabled")
         expect(page).to_not have_button("Disable")
+      end
+      within "#merchant-#{@bike_shop.id}" do
+        click_button "Enable"
+      end
+      expect(page).to have_content("#{@bike_shop.name} is now enabled.")
+      within "#merchant-#{@bike_shop.id}" do
+        expect(page).to have_button("Disable")
       end
     end
   end
