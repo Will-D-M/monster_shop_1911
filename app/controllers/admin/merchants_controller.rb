@@ -1,4 +1,4 @@
-class Admin::MerchantsController < ApplicationController
+class Admin::MerchantsController < Admin::BaseController
   def show
     @merchant = Merchant.find(params[:id])
   end
