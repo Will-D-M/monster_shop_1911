@@ -34,14 +34,14 @@ RSpec.describe 'merchant dashboard', type: :feature do
         expect(page).to have_link(order_1.id)
         expect(page).to have_content("Date Ordered: #{order_1.created_at}")
         expect(page).to have_content("Number of Items: #{order_1.items_count(@bike_shop.id)}")
-        expect(page).to have_content("Total Value of Items: #{order_1.items_value(@bike_shop.id)}")
+        expect(page).to have_content("Total Value of Items: $#{order_1.items_value(@bike_shop.id)}")
       end
 
       within "#orders-#{order_2.id}" do
         expect(page).to have_link(order_2.id)
         expect(page).to have_content("Date Ordered: #{order_2.created_at}")
         expect(page).to have_content("Number of Items: #{order_2.items_count(@bike_shop.id)}")
-        expect(page).to have_content("Total Value of Items: #{order_2.items_value(@bike_shop.id)}")
+        expect(page).to have_content("Total Value of Items: $#{order_2.items_value(@bike_shop.id)}")
       end
 
       expect(page).to_not have_link(order_3.id)
