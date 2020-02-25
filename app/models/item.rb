@@ -7,11 +7,15 @@ class Item <ApplicationRecord
   validates_presence_of :name,
                         :description,
                         :price,
-                        :image,
                         :inventory
   validates_inclusion_of :active?, :in => [true, false]
   validates_numericality_of :price, greater_than: 0
 
+  before_save :default_values
+
+  def default_values
+    self.image = "https://images.squarespace-cdn.com/content/5351bd94e4b0cd2bba3ad77e/1398023186482-83G5YZ5Y26VCPXH7EWQE/TheShop_Logo_web_FN_white.png?content-type=image%2Fpng" if self.image.nil? || self.image == ""
+  end
 
   def average_review
     reviews.average(:rating)
