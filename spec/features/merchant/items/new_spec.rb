@@ -18,13 +18,13 @@ RSpec.describe 'As a mechant user', type: :feature do
 
     fill_in :name, with: 'Gloves'
     fill_in :description, with: 'Ride like a champ'
-    fill_in :image, with: "https://images-na.ssl-images-amazon.com/images/I/81nx46q9Y1L._AC_SL1500_.jpg"
     fill_in :price, with: 30
     fill_in :inventory, with: 100
 
     click_on "Create Item"
 
     created_item = Item.last
+    image = "https://images.squarespace-cdn.com/content/5351bd94e4b0cd2bba3ad77e/1398023186482-83G5YZ5Y26VCPXH7EWQE/TheShop_Logo_web_FN_white.png?content-type=image%2Fpng"
 
     expect(current_path).to eq("/merchant/items")
     expect(page).to have_content("Gloves has saved.")
@@ -32,7 +32,7 @@ RSpec.describe 'As a mechant user', type: :feature do
     within "#item-#{created_item.id}" do
       expect(page).to have_content(created_item.name)
       expect(page).to have_content(created_item.description)
-      expect(page).to have_css("img[src*='#{created_item.image}']")
+      expect(page).to have_css("img[src*='image']")
       expect(page).to have_content(created_item.price)
       expect(page).to have_content(created_item.inventory)
     end
