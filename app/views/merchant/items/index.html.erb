@@ -2,7 +2,6 @@
 
 <section class="grid-container">
   <% @items.each do |item| %>
-    <% if item.active? %>
     <section class = "grid-item" id= 'item-<%=item.id%>'>
       <h2> <%=link_to item.name, "/items/#{item.id}" %> </h2>
       <p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
@@ -10,7 +9,11 @@
       <p> <%= item.description unless @merchant%> </p>
       <p>Price: <%=number_to_currency(item.price) %> </p>
       <p>Inventory: <%= item.inventory %> </p>
+      <% if item.active? %>
+        <p><%= link_to "Deactivate", "/merchant/items/#{item.id}/deactivate", method: :patch %> </p>
+      <% else %>
+        <p><%= link_to "Activate", "/merchant/items/#{item.id}/activate", method: :patch %> </p>
+      <% end %>
     </section>
-    <% end %>
   <% end %>
 </section>
