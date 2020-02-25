@@ -30,4 +30,18 @@ describe "As a  merchant on the order show page" do
   it 'has button to delete' do
     expect(page).to have_button("Cancel Order")
   end
+
+  it 'should only show items from the merchant' do
+    bike_shop = Merchant.create!(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
+    chain = @mike.items.create(name: "Chain", description: "It'll never break!", price: 40, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 22)
+    huffy = bike_shop.items.create(name: "Huffy Bike", description: "Great for tailwhips!", price: 250, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 22)
+    @order_1.item_orders.create!(item: chain, price: chain.price, quantity: 2)
+    @order_1.item_orders.create!(item: huffy, price: huffy.price, quantity: 2)
+    visit "/merchant/orders/#{@order_1.id}"
+
+    expect(page).to have_link(@pencil.name)
+    expect(page).to have_link(chain.name)
+
+    expect(page).to_not have_link(huffy.name)
+  end
 end
