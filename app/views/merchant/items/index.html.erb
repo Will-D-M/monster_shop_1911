@@ -9,6 +9,7 @@
     <p> <%= item.description unless @merchant%> </p>
     <p>Price: <%=number_to_currency(item.price) %> </p>
     <p>Inventory: <%= item.inventory %> </p>
+    <%= link_to "Edit Item", "/merchant/items/#{item.id}/edit" %>
     <% if item.no_order? %>
       <%= button_to "Delete Item", "/merchant/items/#{item.id}", method: :delete %>
     <% end %>
