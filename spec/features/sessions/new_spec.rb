@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'As a visitor', type: :feature do
   describe "when not logged in" do
     it 'should let me log in with valid credentials' do
-      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "test")
+      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy10@hotmail.com", password: "test")
 
       visit '/login'
 
@@ -16,7 +16,8 @@ RSpec.describe 'As a visitor', type: :feature do
     end
 
     it 'should let me log in with valid credentials as merchant' do
-      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "test", role: 1)
+      bike_shop = Merchant.create!(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
+      user = bike_shop.users.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy11@hotmail.com", password: "test", role: 1)
 
       visit '/login'
 
@@ -29,7 +30,7 @@ RSpec.describe 'As a visitor', type: :feature do
     end
 
     it 'should let me log in with valid credentials as admin' do
-      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "test", role: 2)
+      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy12@hotmail.com", password: "test", role: 2)
 
       visit '/login'
 
@@ -42,7 +43,7 @@ RSpec.describe 'As a visitor', type: :feature do
     end
 
     it 'should not let me log in with bad credentials' do
-      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "test")
+      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy13@hotmail.com", password: "test")
 
       visit '/login'
 
@@ -57,7 +58,7 @@ RSpec.describe 'As a visitor', type: :feature do
 
   describe "when already logged in" do
     it 'should route me to /profile' do
-      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "test")
+      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy14@hotmail.com", password: "test")
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
@@ -68,7 +69,8 @@ RSpec.describe 'As a visitor', type: :feature do
     end
 
     it 'should route me to /merchant' do
-      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "test", role: 1)
+      bike_shop = Merchant.create!(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
+      user = bike_shop.users.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy11@hotmail.com", password: "test", role: 1)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 

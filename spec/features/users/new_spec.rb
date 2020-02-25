@@ -92,7 +92,8 @@ RSpec.describe "create user page", type: :feature do
     end
 
     it 'can login as a merchant employee' do
-      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 1)
+      bike_shop = Merchant.create!(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
+      user = bike_shop.users.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy11@hotmail.com", password: "test", role: 1)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       visit '/'
 
@@ -146,7 +147,8 @@ RSpec.describe "create user page", type: :feature do
 
   describe 'as a merchant user' do
     it 'cannot visit merchant or admin pages' do
-      user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "sfgdfg", role: 1)
+      bike_shop = Merchant.create!(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
+      user = bike_shop.users.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy11@hotmail.com", password: "test", role: 1)
 
       visit '/'
 

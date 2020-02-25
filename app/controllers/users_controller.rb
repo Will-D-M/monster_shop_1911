@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.save
-      session[:user] = @user.id
+      session[:user_id] = @user.id
       redirect_to "/profile"
       flash[:notice] = "You are registered and now logged in."
     elsif @user.duplicate_email?(@user.email)

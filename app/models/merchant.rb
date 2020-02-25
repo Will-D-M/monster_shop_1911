@@ -27,6 +27,11 @@ class Merchant <ApplicationRecord
     item_orders.distinct.joins(:order).pluck(:city)
   end
 
+  def pending_orders
+    orders = item_orders.where('item_orders.status = 0', 'items.merchant_id = ?', self.id).pluck(:order_id)
+    Order.find(orders)
+  end
+
   def change_status
     if status == "active"
       update(status: "disabled")

@@ -24,6 +24,7 @@ dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it
 user = User.create!(name: "default_user", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "default@hotmail.com", password: "sfgdfg", role: 0)
 user_2 = User.create!(name: "merchant_employee", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "merchant@hotmail.com", password: "sfgdfg", role: 1, merchant_id: bike_shop.id)
 user_3 = User.create!(name: "admin", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "admin@hotmail.com", password: "sfgdfg", role: 2)
+user_4 = User.create!(name: "merchant_employee2", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "merchant2@hotmail.com", password: "sfgdfg", role: 1, merchant_id: dog_shop.id)
 
 order_1 = Order.create(name: 'Will', address: "123 main", city: "Denver", state: "CO", zip: 99999, user_id: user.id, status: 0)
 order_2 = Order.create(name: 'Bob', address: "123 main", city: "Denver", state: "CO", zip: 99999, user_id: user_2.id, status: 1)
