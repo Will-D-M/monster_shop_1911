@@ -60,13 +60,16 @@ Rails.application.routes.draw do
     get '/', to: 'dashboard#show'
     get '/items', to: 'items#index'
     get '/orders/:id', to: "orders#show"
+    delete '/items/:item_id', to: "items#destroy"
+    get '/items/new', to: "items#new"
+    post '/items', to: "items#create"
   end
 
   namespace :admin do
     get '/', to: 'dashboard#index'
     get "/profile/:user_id", to: 'users#show'
     patch "/profile/:order_id", to: 'orders#update'
-    
+
     get '/merchants/:id', to: "merchants#show"
     get '/merchant/:id/items', to: "items#index"
     get '/merchant/orders/:id', to: "orders#show"
