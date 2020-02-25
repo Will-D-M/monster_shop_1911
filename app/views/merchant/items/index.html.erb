@@ -1,4 +1,4 @@
-<h2><%= @items.first.merchant.name %></h2>
+<h2><%= current_user.merchant.name %></h2>
 
 <section class="grid-container">
   <% @items.each do |item| %>
@@ -9,6 +9,10 @@
       <p> <%= item.description unless @merchant%> </p>
       <p>Price: <%=number_to_currency(item.price) %> </p>
       <p>Inventory: <%= item.inventory %> </p>
+      <p><%= link_to "Edit Item", "/merchant/items/#{item.id}/edit" %> </p>
+      <% if item.no_order? %>
+        <p><%= button_to "Delete Item", "/merchant/items/#{item.id}", method: :delete %></p>
+      <% end %>
       <% if item.active? %>
         <p><%= link_to "Deactivate", "/merchant/items/#{item.id}/deactivate", method: :patch %> </p>
       <% else %>
@@ -17,3 +21,5 @@
     </section>
   <% end %>
 </section>
+
+<p><%= link_to "Add New Item", "/merchant/items/new" %></p>

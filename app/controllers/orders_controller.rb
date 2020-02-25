@@ -36,6 +36,7 @@ class OrdersController <ApplicationController
     order.update(status: 1)
     order.items.each do |item|
       item.increase_inventory(ItemOrder.all.first.quantity)
+      # ItemOrder.find_by
     end
     flash[:success] = "Order #{order.id} is now cancelled."
     redirect_to "/profile"

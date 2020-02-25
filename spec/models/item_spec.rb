@@ -5,7 +5,6 @@ describe Item, type: :model do
     it { should validate_presence_of :name }
     it { should validate_presence_of :description }
     it { should validate_presence_of :price }
-    it { should validate_presence_of :image }
     it { should validate_presence_of :inventory }
     it { should validate_inclusion_of(:active?).in_array([true,false]) }
   end
@@ -28,6 +27,7 @@ describe Item, type: :model do
       @wheel = @bike_shop.items.create(name: "Wheel", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
       @seat = @bike_shop.items.create(name: "Seat", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
       @frame = @bike_shop.items.create(name: "Frame", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
+      @bell = @bike_shop.items.create(name: "Bell", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
 
       @x = @bike_shop.items.create(name: "x", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 10)
       @y = @bike_shop.items.create(name: "y", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 10)
@@ -118,6 +118,13 @@ describe Item, type: :model do
       expect(@chain.active?).to eq(false)
       @chain.active_true
       expect(@chain.active?).to eq(true)
+    end
+
+    it 'no_order?' do
+      order_1 = Order.create(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user_id: @user.id)
+      order_1.item_orders.create(item: @chain, price: @chain.price, quantity: 5)
+      expect(@chain.no_order?).to eq(false)
+      expect(@bell.no_order?).to eq(true)
     end
   end
 end
