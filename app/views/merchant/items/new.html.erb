@@ -1,19 +1,19 @@
 <center>
   <%= form_tag "/merchant/items", method: :post do %>
     <%= label_tag :name %>
-    <%= text_field_tag :name%>
+    <%= text_field_tag :name, (if @item != nil then @item.name else nil end) %>
 
     <%= label_tag :description %>
-    <%= text_field_tag :description %>
+    <%= text_field_tag :description, (if @item != nil then @item.description else nil end) %>
 
     <%= label_tag :price %>
-    <%= text_field_tag :price %>
+    <%= text_field_tag :price, (if @item != nil then @item.price else nil end) %>
 
     <%= label_tag :image %>
     <%= text_field_tag :image %>
 
     <%= label_tag :inventory %>
-    <%= text_field_tag :inventory %>
+    <%= text_field_tag :inventory, (if @item != nil then @item.inventory else nil end) %>
 
     <%= submit_tag 'Create Item' %>
   <% end %>
