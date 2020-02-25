@@ -49,4 +49,8 @@ class Item <ApplicationRecord
     self.update(active?: true)
   end
 
+  def no_order?
+    ItemOrder.where(item_id: id).empty?
+  end
+
 end
