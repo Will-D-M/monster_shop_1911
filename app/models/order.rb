@@ -44,4 +44,8 @@ class Order <ApplicationRecord
       .where('items.merchant_id = ?', merchant_id)
       .sum('item_orders.price * item_orders.quantity')
   end
+
+  def merchant_order_items merchant_id
+    item_orders.joins(:item).where('items.merchant_id = ?', merchant_id)
+  end
 end
