@@ -16,11 +16,14 @@ RSpec.describe 'As a mechant user', type: :feature do
     click_link "Add New Item"
     expect(current_path).to eq('/merchant/items/new')
 
-    fill_in :name, with: 'Gloves'
     fill_in :description, with: 'Ride like a champ'
     fill_in :price, with: 30
     fill_in :inventory, with: 100
+    click_on "Create Item"
 
+    expect(page).to have_content("Name can't be blank")
+
+    fill_in :name, with: 'Gloves'
     click_on "Create Item"
 
     created_item = Item.last
