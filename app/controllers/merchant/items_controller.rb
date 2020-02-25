@@ -27,7 +27,7 @@ class Merchant::ItemsController < Merchant::BaseController
   def update
     @item = Item.find(params[:item_id])
     if params[:status]
-      swap_active? item
+      swap_active? @item
       redirect_to "/merchant/items"
     else
       @item.update(item_params)
