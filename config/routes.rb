@@ -65,6 +65,7 @@ Rails.application.routes.draw do
     post '/items', to: "items#create"
     get '/items/:item_id/edit', to: "items#edit"
     patch '/items/:item_id', to: "items#update"
+    patch '/items/:item_id/:status', to: "items#update"
   end
 
   namespace :admin do
