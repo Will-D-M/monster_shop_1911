@@ -10,4 +10,7 @@ class ItemOrder <ApplicationRecord
     price * quantity
   end
 
+  def has_inventory?
+    quantity <= item.inventory
+  end
 end
