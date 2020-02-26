@@ -36,8 +36,8 @@
       <th>Subtotal</th>
     </tr>
   <% @order.merchant_order_items(current_user.merchant.id).each do |item_order|%>
-    <tr>
     <section id = "item-<%=item_order.item_id%>">
+      <tr>
         <td><p><%=link_to item_order.item.name, "/items/#{item_order.item_id}"%></p>
         <p><%= item_order.item.description %></p>
         <p><%= image_tag(item_order.item.image) %></p></td>
@@ -45,8 +45,15 @@
         <td><p><%= number_to_currency(item_order.price)%></p></td>
         <td><p><%= item_order.quantity%></p></td>
         <td><p><%= number_to_currency(item_order.subtotal)%></p></td>
-      </section>
-    </tr>
+      </tr>
+      <% if item_order.status == "unfulfilled" && item_order.has_inventory? %>
+        <p> <%= button_to "Fulfill Item", "/merchant/item_orders/#{item_order.id}", method: :patch %> </p>
+      <% elsif item_order.status == "unfulfilled" && !item_order.has_inventory? %>
+        <p>Not enough inventory to fulfill.</p>
+      <% else %>
+        <p>Item Fulfilled</p>
+      <% end %>
+    </section>
   <% end %>
 </table>
 
