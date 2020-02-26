@@ -34,10 +34,11 @@ class OrdersController <ApplicationController
   def destroy
     order = Order.find(params[:id])
     order.update(status: 1)
-    order.items.each do |item|
-      item.increase_inventory(ItemOrder.all.first.quantity)
-      # ItemOrder.find_by
+    order.item_orders.each do |item_order|
+      item_order.item.update(inventory: item_order.item.inventory + item_order.quantity)
+      item_order.item.save
     end
+
     flash[:success] = "Order #{order.id} is now cancelled."
     redirect_to "/profile"
   end
