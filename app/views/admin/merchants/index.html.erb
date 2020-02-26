@@ -4,6 +4,8 @@
   <section id= "merchant-<%=merchant.id%>">
     <p> <%= link_to "#{merchant.name}", "/admin/merchants/#{merchant.id}" %> </p>
     <% if merchant.status == "active" %>
+    <p>City: <%= merchant.city %></p>
+    <p>State: <%= merchant.state %></p>
       <p> <%= button_to "Disable", "/admin/merchants/#{merchant.id}", method: :patch %> </p>
     <% else %>
       <p>Disabled</p>
