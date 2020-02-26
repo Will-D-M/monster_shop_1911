@@ -1,0 +1,7 @@
+<h2>All Users</h2>
+
+<% @users.each do |user| %>
+  <p><%= link_to user.name, "/admin/users/#{user.id}" %></p>
+  <p> Date registered:<%= user.created_at %></p>
+  <p> User Role:<%= user.role %></p>
+<% end %>
