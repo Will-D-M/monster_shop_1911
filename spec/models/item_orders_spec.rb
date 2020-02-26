@@ -24,10 +24,15 @@ describe ItemOrder, type: :model do
       @order_1 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user_id: @user.id)
       @item_order_1 = @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2, status: 'fulfilled')
       @item_order_2 = @order_1.item_orders.create!(item: @wheel, price: @wheel.price, quantity: 2, status: 'fulfilled')
-
     end
     it 'subtotal' do
       expect(@item_order_1.subtotal).to eq(200)
+    end
+
+    it 'has_inventory?' do
+      expect(@item_order_1.has_inventory?).to eq(true)
+      item_order_3 = @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 13, status: 'unfulfilled')
+      expect(item_order_3.has_inventory?).to eq(false)
     end
   end
 
