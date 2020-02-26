@@ -41,7 +41,6 @@ class Cart
   end
 
   def limit_reached? id
-    # binding.pry
     @contents[id] == Item.find(id.to_s).inventory
   end
 
