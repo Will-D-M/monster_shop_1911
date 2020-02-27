@@ -5,6 +5,8 @@ RSpec.describe 'merchant index page', type: :feature do
     before :each do
       @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 80203)
       @dog_shop = Merchant.create(name: "Meg's Dog Shop", address: '123 Dog Rd.', city: 'Hershey', state: 'PA', zip: 80203)
+      @user_1 = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy@hotmail.com", password: "test", role: 2)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
     end
 
     it 'I can see a list of merchants in the system' do
