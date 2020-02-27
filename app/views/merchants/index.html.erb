@@ -1,5 +1,7 @@
 <h1 align = "center">Merchants</h1>
-<p align="center"><%= link_to "New Merchant", "/merchants/new" %></p>
+<% if current_admin? %>
+  <p align="center"><%= link_to "New Merchant", "/merchants/new" %></p>
+<% end %>
 <section class = "grid-container">
   <% @merchants.each do |merchant|%>
     <section class = "grid-item">
