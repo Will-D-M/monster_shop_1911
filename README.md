@@ -55,8 +55,7 @@ our application.
 
 ## Code Snippets
 
-Successfully used ActiveRecord queries with SQL injections to display
-the most and least ordered items.
+Successfully used ActiveRecord queries with SQL injections to display the most and least ordered items.
 
 ```ruby
 def self.most_ordered_items
