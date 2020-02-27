@@ -20,8 +20,6 @@ To see the website in action please click on the following link:
 * Run rake db:create
 * Run rake db:migrate
 
-This application has seeds provided but please feel free to create your own.
-
 The Gemfile also uses several gems to help assist with testing:
 
 * capybara
