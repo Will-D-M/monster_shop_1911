@@ -46,10 +46,12 @@
         <td><p><%= item_order.quantity%></p></td>
         <td><p><%= number_to_currency(item_order.subtotal)%></p></td>
       </tr>
-      <% if item_order.status == "unfulfilled" && item_order.has_inventory? %>
+      <% if item_order.status == "unfulfilled" && item_order.has_inventory? && item_order.order.status != "cancelled" %>
         <p> <%= button_to "Fulfill Item", "/merchant/item_orders/#{item_order.id}", method: :patch %> </p>
       <% elsif item_order.status == "unfulfilled" && !item_order.has_inventory? %>
         <p>Not enough inventory to fulfill.</p>
+      <% elsif item_order.order.status == "cancelled" %>
+        <p>Order cancelled</p>
       <% else %>
         <p>Item Fulfilled</p>
       <% end %>
