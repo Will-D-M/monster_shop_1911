@@ -46,5 +46,11 @@ RSpec.describe 'merchant dashboard', type: :feature do
 
       expect(page).to_not have_link(order_3.id)
     end
+
+    it "can click on a link to a new page to manage discounts" do
+      visit '/merchant'
+      click_link "Manage Bulk Discounts"
+      expect(current_path).to eq("/merchant/#{merchant.id}/discounts")
+    end
   end
 end
