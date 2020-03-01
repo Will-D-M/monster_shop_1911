@@ -5,6 +5,7 @@ RSpec.describe 'merchant dashboard', type: :feature do
     before :each do
       @bike_shop = Merchant.create!(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
       @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      @user = User.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy33@hotmail.com", password: "sfgdfg", role: 0)
       @user_2 = @bike_shop.users.create!(name: "Tommy", address: "123", city: "Bruh", state: "CO", zip: "99999", email: "zboy123@hotmail.com", password: "test", role: 1)
       @discount_1 = @bike_shop.discounts.create!(name: "1% Discount", percent_off: 1, min_quantity: 10)
       @discount_2 = @bike_shop.discounts.create!(name: "5% Discount", percent_off: 5, min_quantity: 20)
@@ -14,17 +15,21 @@ RSpec.describe 'merchant dashboard', type: :feature do
       click_link "Manage Bulk Discounts"
     end
 
-    it "only displays your merchant discounts" do
+    it "can link to create a new discount" do
       visit '/merchant'
       click_link "Manage Bulk Discount"
 
-      within("#discount#{@discount_1.id}") do
-        expect(page).to have_content("Name: #{@discount_1.name}")
-        expect(page).to have_content("Percent Off: #{@discount_1.percent_off}%")
-        expect(page).to have_content("Minimum Quantity: #{@discount_1.min_quantity}")
-      end
+      click_link "New Bulk Discount"
+      expect(current_path).to eq("/merchant/discounts/new")
 
-      expect(page).to_not have_content(@discount_3.name)
+      fill_in "Name", with: "20% Discount"
+      fill_in "Percent off", with: 20
+      fill_in "Min quantity", with: 50
+
+      click_on "Create Discount"
+
+      expect(current_path).to eq("/merchant/discounts")
+      expect(page).to have_content("20% Discount")
     end
   end
 end

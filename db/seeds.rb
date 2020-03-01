@@ -37,3 +37,8 @@ order_2.item_orders.create(item: bike, price: bike.price, quantity: 2)
 order_4.item_orders.create(item: pull_toy, price: pull_toy.price, quantity: 1)
 order_5.item_orders.create(item: bike, price: bike.price, quantity: 1)
 order_5.item_orders.create(item: dog_bone, price: dog_bone.price, quantity: 5)
+
+#discounts
+discount_1 = bike_shop.discounts.create!(name: "1% Discount", percent_off: 1, min_quantity: 10)
+discount_2 = bike_shop.discounts.create!(name: "5% Discount", percent_off: 5, min_quantity: 20)
+discount_3 = dog_shop.discounts.create!(name: "10% Discount", percent_off: 10, min_quantity: 30)
