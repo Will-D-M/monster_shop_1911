@@ -22,11 +22,9 @@ RSpec.describe 'merchant dashboard', type: :feature do
       click_link "New Bulk Discount"
       expect(current_path).to eq("/merchant/discounts/new")
 
-      fill_in "Name"
-
-      fill_in :name, with: "20% Discount"
-      fill_in :percent_off, with: 20
-      fill_in :min_quantity, with: 50
+      fill_in "Name", with: "20% Discount"
+      fill_in "Percent off", with: 20
+      fill_in "Min quantity", with: 50
 
       click_on "Create Discount"
 
