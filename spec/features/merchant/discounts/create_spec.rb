@@ -25,7 +25,6 @@ RSpec.describe 'merchant dashboard', type: :feature do
       fill_in "Name", with: "20% Discount"
       fill_in "Percent off", with: 20
       fill_in "Min quantity", with: 50
-
       click_on "Create Discount"
 
       expect(current_path).to eq("/merchant/discounts")

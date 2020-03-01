@@ -11,25 +11,29 @@ RSpec.describe 'merchant dashboard', type: :feature do
       @discount_2 = @bike_shop.discounts.create!(name: "5% Discount", percent_off: 5, min_quantity: 20)
       @discount_3 = @meg.discounts.create!(name: "10% Discount", percent_off: 10, min_quantity: 30)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_2)
-      visit '/merchant'
+      visit '/merchant/'
       click_link "Manage Bulk Discounts"
     end
 
     it "can edit a bulk discount" do
 
       within("#discount#{@discount_1.id}") do
-              click_link "Edit Bulk Discount"
-        expect(page).to have_content("Name: #{@discount_1.name}")
+        click_link "Edit Bulk Discount"
       end
 
-      expect(current_path).to eq("/merchant/discounts/:id/edit")
+      expect(current_path).to eq("/merchant/discounts/#{@discount_1.id}/edit")
+
+      fill_in "Name", with: ""
+      fill_in "Percent off", with: 80
+      click_on "Update Discount"
+      expect(page).to have_content("Name can't be blank")
 
       fill_in "Name", with: "80% Discount"
       fill_in "Percent off", with: 80
       click_on "Update Discount"
 
       expect(current_path).to eq("/merchant/discounts")
-      expect(page).to have_content("20% Discount")
+      expect(page).to have_content("Bulk Discount has been updated.")
     end
   end
 end
