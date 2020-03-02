@@ -2,7 +2,7 @@
 
 <% @discounts.each do |discount| %>
   <section id="discount<%= discount.id %>">
-    <h3><p>Name: <%= discount.name %></p></h3>
+    <h3><p>Name: <%= link_to discount.name, merchant_discount_path(discount.id) %></p></h3>
     <p>Percent Off: <%= discount.percent_off %>%</p>
     <p>Minimum Quantity: <%= discount.min_quantity %></p>
     <p><%= link_to "Edit Bulk Discount", edit_merchant_discount_path(discount.id) %></p>
