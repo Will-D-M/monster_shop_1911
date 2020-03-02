@@ -37,3 +37,4 @@ RSpec.describe 'merchant dashboard', type: :feature do
     end
   end
 end
+    # bike_shop.reload
