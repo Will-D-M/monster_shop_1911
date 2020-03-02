@@ -66,8 +66,6 @@ Rails.application.routes.draw do
     patch '/items/:item_id', to: "items#update"
     patch '/items/:item_id/:status', to: "items#update"
     patch '/item_orders/:id', to: "item_orders#update"
-    resources :discounts
-    # delete "/orders/:id", to: "discounts#destroy"
   end
 
   namespace :admin do
