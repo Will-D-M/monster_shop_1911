@@ -1,0 +1,12 @@
+<%= form_tag path, method: method do %>
+  <%= label_tag :name %>
+  <%= text_field_tag :name %>
+
+  <%= label_tag :item_threshold %>
+  <%= text_field_tag :item_threshold %>
+
+  <%= label_tag :percentage_off %>
+  <%= text_field_tag :percentage_off %>
+
+  <%= submit_tag button_text %>
+<% end %>

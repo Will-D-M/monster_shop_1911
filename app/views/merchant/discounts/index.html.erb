@@ -1,0 +1,11 @@
+<h2>Discounts</h2>
+<%= link_to  "Add new Discount", new_merchant_discount_path %>
+
+<% @discounts.each do |discount| %>
+  <section id="discount-<%= discount.id %>">
+    <p>Name: <%= link_to discount.name, "/merchant/discounts/#{discount.id}" %></p>
+    <p>Items Required: <%= discount.item_threshold %></p>
+    <p>Percentage Off: <%= discount.percentage_off %></p>
+    <p>----------------------------------------------</p>
+  </section>
+<% end %>
